@@ -1,3 +1,5 @@
+import uvicorn
+
 import io
 
 from typing import Annotated, Union
@@ -11,7 +13,7 @@ app = FastAPI(title="Homepage")
 appAPI = FastAPI(title="API")
 
 app.mount("/api", appAPI)
-app.mount("/", StaticFiles(directory="../www", html=True), name="www")
+app.mount("/", StaticFiles(directory="./src/www", html=True), name="www")
 
 @appAPI.post("/file/")
 async def readFile(file: UploadFile):
